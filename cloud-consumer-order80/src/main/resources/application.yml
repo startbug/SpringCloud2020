@@ -1,2 +1,21 @@
 server:
   port: 80
+
+spring:
+  application:
+    name: cloud-order-service
+eureka:
+  client:
+    # 是否从Eureka中抓取已经有的注册信息,默认为true.单节点无所谓,集群必须设置为true才能配合ribbon使用
+    fetch-registry: true
+    # 表示是否将自己注册到eurekaServer中,默认为true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7002.com:7002/eureka,http://eureka7001.com:7001/eureka
+  instance:
+    # 心跳检测与续约时间
+    # 开发时设置小一些,保证服务关闭后注册中心能及时剔除服务
+    # Eureka客户端像服务端发送心跳时间间隔,单位为秒(默认是30秒)
+    lease-renewal-interval-in-seconds: 1
+    # Eureka服务端在收到最后一次心跳后等待时间上限,单位为秒(默认90秒),超时将剔除服务
+    lease-expiration-duration-in-seconds: 2
