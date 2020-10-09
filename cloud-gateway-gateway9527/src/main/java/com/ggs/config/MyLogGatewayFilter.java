@@ -24,7 +24,7 @@ import java.util.Date;
 public class MyLogGatewayFilter implements GlobalFilter,Ordered  {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("----------------visit time: "+new Date());
+        log.info("----- -----------visit time: "+new Date());
 
         String usernamex = exchange.getRequest().getQueryParams().getFirst("usernamex");
 
