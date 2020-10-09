@@ -6,16 +6,27 @@ spring:
     name: cloud-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能,利用微服务名进行路由
       routes:
         - id: payment_routh           #路由的ID,没有固定规则但是要求唯一,建议配合服务名
-          uri: http://localhost:8001  #匹配后提供服务的路由地址
+#          uri: http://localhost:8001  #匹配后提供服务的路由地址
+          uri: lb://CLOUD-PROVIDER-PAYMENT #匹配后提供服务的路由地址 实现网关的负载均衡
           predicates:
             - Path=/payment/get/**    #断言,路径相匹配的进行路由
+            - After=2020-10-09T11:37:02.568+08:00[Asia/Shanghai] #要求在这个时间之后才能访问,在之前访问,会报404
+#            - Cookie=lover,nobody #要求访问该路径时候携带cookie, 键为lover,值为nobody
+#            - Header=X-Request-Id, \d+ #请求头要有X-Request-Id属性并且为整数的正则表达式
 
         - id: payment_routh2
-          uri: http:localhost:8001
+#          uri: http://localhost:8001
+          uri: lb://CLOUD-PROVIDER-PAYMENT
           predicates:
             - Path=/payment/lb/**
+            - After=2020-10-09T11:40:02.568+08:00[Asia/Shanghai]
+#            - Cookie=lover,nobody
+#            - Header=X-Request-Id,\d+ #请求头要有X-Request-Id属性并且为整数的正则表达式
 eureka:
   instance:
     hostname: cloud-gateway-service
