@@ -12,8 +12,12 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class ApplicationContextConfig {
 
+    /**
+     * @LoadBalanced(负载均衡)必须要添加该注解,否则无法使用微服务名进行访问其他服务
+     * @return
+     */
     @Bean
-//    @LoadBalanced
+    @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }

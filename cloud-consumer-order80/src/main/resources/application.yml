@@ -1,9 +1,14 @@
 server:
   port: 80
-
 spring:
   application:
     name: cloud-order-service
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      # 采样率值介于0到1之间,1表示全部采集,比较消耗性能,通常指定为0.5
+      probability: 1
 eureka:
   client:
     # 是否从Eureka中抓取已经有的注册信息,默认为true.单节点无所谓,集群必须设置为true才能配合ribbon使用
@@ -11,7 +16,8 @@ eureka:
     # 表示是否将自己注册到eurekaServer中,默认为true
     register-with-eureka: true
     service-url:
-      defaultZone: http://eureka7002.com:7002/eureka,http://eureka7001.com:7001/eureka
+      #      defaultZone: http://eureka7002.com:7002/eureka,http://eureka7001.com:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka
   instance:
     # 心跳检测与续约时间
     # 开发时设置小一些,保证服务关闭后注册中心能及时剔除服务

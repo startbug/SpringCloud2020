@@ -12,6 +12,12 @@
     <artifactId>cloud-consumer-order80</artifactId>
 
     <dependencies>
+
+        <!--包含了sleuth+zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
         <!--引入自定义的api通用包,可以使用Payment和Entity-->
         <dependency>
             <groupId>com.ggs</groupId>
