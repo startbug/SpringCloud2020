@@ -6,12 +6,14 @@ spring:
     name: nacos-config-client
   cloud:
     nacos:
+      # nginx的1111端口,做集群(自动转发到端口为3333,4444,5555的三台nacos上)
       discovery:
-        server-addr: localhost:8848 # nacos服务注册中心地址
+        server-addr: 192.168.232.131:1111 # nacos服务注册中心地址
       config:
-        server-addr: localhost:8848 # nacos作为配置中心地址
+        server-addr: 192.168.232.131:1111 # nacos作为配置中心地址
         file-extension: yml # 指定yml格式的配置
-
+#        group: TEST_GROUP # 指定配置文件所在的组名
+#        namespace: c0a985a9-9fdc-46ad-b650-2582d1b2a2d6
 # 在nacos配置中心中需要配置名字格式以下的配置文件
 # ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
 # 得到名称为: nacos-config-client-dev.yml
