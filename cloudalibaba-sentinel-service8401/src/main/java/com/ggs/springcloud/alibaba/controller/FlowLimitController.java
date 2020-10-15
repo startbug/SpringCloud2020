@@ -53,9 +53,11 @@ public class FlowLimitController {
      * @return
      */
     @SentinelResource(value = "testF",blockHandler = "fallback_testHotKey")
+//    @SentinelResource(value = "testF")
     @GetMapping("/testF")
     public String testF(@RequestParam(value = "p1", required = false) Integer p1,
                         @RequestParam(value = "p2", required = false) Integer p2) {
+        int i=10/0;
         return "testFtestFtestFtestF~~~~~";
     }
 
