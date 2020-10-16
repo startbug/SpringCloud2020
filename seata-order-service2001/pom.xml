@@ -9,40 +9,59 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloudalibaba-consumer-nacos-order84</artifactId>
+    <artifactId>seata-order-service2001</artifactId>
+
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
+        <!--nacos-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
-            <version>1.8.0</version>
-        </dependency>
+        <!--seata-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.seata</groupId>
+                    <artifactId>seata-all</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-all</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.ggs</groupId>
-            <artifactId>cloud-api-commons</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.21</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
         <dependency>

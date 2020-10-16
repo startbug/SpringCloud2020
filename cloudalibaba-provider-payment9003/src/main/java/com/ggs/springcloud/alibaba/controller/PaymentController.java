@@ -30,7 +30,7 @@ public class PaymentController {
 
     @GetMapping("/payment/{id}")
     public CommonResult payment(@PathVariable("id") Long id) {
-        return new CommonResult(200, "search success", map.get(id));
+        return new CommonResult(200, "search success" + serverPort, map.get(id));
     }
 }
 

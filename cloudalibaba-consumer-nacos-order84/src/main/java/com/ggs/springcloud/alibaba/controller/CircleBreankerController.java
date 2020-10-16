@@ -2,6 +2,7 @@ package com.ggs.springcloud.alibaba.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.ggs.springcloud.alibaba.service.PaymentService;
 import com.ggs.springcloud.entities.Payment;
 import com.ggs.springcloud.vo.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
 
 /**
  * @Author Starbug
@@ -47,4 +50,16 @@ public class CircleBreankerController {
     public CommonResult<Payment> blockHandler(@PathVariable("id") Long id, BlockException blockException) {
         return new CommonResult<>(444, "兜底异常处理 blockHandler" + blockException.getMessage(), new Payment(id, null));
     }
+
+
+    @Resource
+    private PaymentService paymentService;
+
+    @GetMapping("/consumer/openfeign/{id}")
+    public CommonResult<Payment> paymentFeign(@PathVariable("id") Long id) {
+        CommonResult payment = paymentService.payment(id);
+        return payment;
+    }
+
+
 }
