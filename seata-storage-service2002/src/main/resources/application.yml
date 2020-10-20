@@ -11,6 +11,7 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+        namespace: SEATA_GROUP
   datasource:
     username: root
     password: 123456

@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
      * @param order
      */
     @Override
-//    @GlobalTransactional(name = "ggs-create-order", rollbackFor = Exception.class)
+    @GlobalTransactional(name = "ggs-create-order", rollbackFor = Exception.class)
     public void createOrder(Order order) {
         log.info("--------->创建订单中");
         //1.新建账单
